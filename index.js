@@ -5,9 +5,9 @@ import * as CarsCont from './controllers/PriceCont.js'
 import * as ClothesType from './controllers/ClothesTypeCont.js'
 import multer, { diskStorage } from 'multer';
 import TovarsModel from './models/TovarsModel.js';
+import {config} from 'dotenv';
 
-
-
+config();
 const app = express();
 app.use(cors());
 app.use(express.json())
@@ -24,7 +24,7 @@ const storage = diskStorage({
 })
 const upload = multer({storage: storage})
 
-mongoose.connect('')
+mongoose.connect(process.env.DB_CONN)
     .then(() => console.log('Успешно подключена бд'))
     .catch((err) => console.log(err))
 app.get('/', CarsCont.index)

@@ -48,12 +48,4 @@ app.get("/products",async function (req, res, ) {
     const GetAll = await TovarsModel.find().populate('Type');
     res.json(GetAll)
 })
-app.listen(4444, (err) => {
-    if (err) {
-        console.log(err)
-    }
-    else {
-        console.log('Сервер успешно запущен!')
-    }
-
-})
+module.exports = app

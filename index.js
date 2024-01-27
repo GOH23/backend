@@ -57,4 +57,3 @@ app.listen(4444, (err) => {
     }
 
 })
-module.exports = app

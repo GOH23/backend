@@ -3,6 +3,7 @@ import cors from 'cors'
 import mongoose from 'mongoose';
 import * as CarsCont from './controllers/PriceCont.js'
 import * as ClothesType from './controllers/ClothesTypeCont.js'
+import * as ScalesCont from './controllers/ScaleCont.js'
 import multer, { diskStorage } from 'multer';
 import TovarsModel from './models/TovarsModel.js';
 import {config} from 'dotenv';
@@ -23,12 +24,14 @@ const storage = diskStorage({
     
 })
 const upload = multer({storage: storage})
-
-mongoose.connect(process.env.DB_CONN)
+//process.env.DB_CONN
+mongoose.connect("mongodb+srv://user1:user1@cluster0.vdcz2es.mongodb.net/")
     .then(() => console.log('Успешно подключена бд'))
     .catch((err) => console.log(err))
 app.get('/', CarsCont.index)
-app.get('/price/table', CarsCont.GetAllCars)
+app.get("/scales",ScalesCont.GetAllScales)
+app.post("/scales",ScalesCont.AddNewScale);
+app.get('/price/table', CarsCont.GetAllPrices)
 app.post('/price/table', CarsCont.AddNewCard)
 app.post('/clothes/add',ClothesType.AddNewType)
 app.use('/images', express.static('images'));

@@ -1,5 +1,5 @@
 import PriceSchema from '../models/PriceModel.js'
-export const GetAllCars = async (req,res)=>{
+export const GetAllPrices= async (req,res)=>{
     const GetAll = await PriceSchema.find();
     res.json(GetAll)
 }
